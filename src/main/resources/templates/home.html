@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Добро пожаловать</title>
+    <link rel="stylesheet" href="/css/home.css" />
+    <link type="image/x-icon" href="/img/favicon/favicon-32x32.png" rel="shortcut icon" />
+    <link type="Image/x-icon" href="/img/favicon/favicon-32x32.png" rel="icon" />
+  </head>
+  <body style="font-family: Comic Sans MS, Comic Sans, cursive">
+    <div class="containerMain">
+      <div class="lefSite">
+        <p style="text-align: center">Левая сторона</p>
+      </div>
+
+      <div class="mainSite">
+        <div class="containerHead">
+          <div class="icon">
+            <a href="/"><img class="forIcon" src="/img/ForExample/favicon.png" /></a>
+          </div>
+          <div class="siteName">
+            <p><a class="buttonEventTracker" href="/">Event Tracker</a></p>
+          </div>
+          <div class="search">
+            <p><form action="#" method="post">
+              <input
+                style="
+                  width: 200px;
+                  margin-right: 10px;
+                  font-family: Trebuchet MS, sans-serif;
+                "
+                type="search"
+                placeholder="Введите запрос"
+              /><input
+                class="buttonSearch"
+                style="margin-right: 10px"
+                type="submit"
+                value="Search"
+              />
+            </form></p>
+          </div>
+          <div sec:authorize="!isAuthenticated()" class="profileOrLogin">
+            <p><a class="buttonProfile" href="/login">Войти</a></p>
+          </div>
+          <div sec:authorize="isAuthenticated()" class="profileOrLogin">
+            <p><a class="buttonProfile" href="/profile">Профиль</a></p>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div>
+            <p>Название мероприятия</p>
+            <img class="card" src="/img/ForExample/фото для теста.jpg" />
+          </div>
+          <div>
+            <p>Название мероприятия</p>
+            <img class="card" src="/img/ForExample/фото для теста большое.jpeg" />
+          </div>
+          <div>
+            <p>Название мероприятия</p>
+            <img class="card" src="/img/ForExample/фото для теста маленькое.jpg" />
+          </div>
+          <div>
+            <p>Название мероприятия</p>
+            <img class="card" src="/img/ForExample/еще для теста.jpg" />
+          </div>
+
+          <div>
+            <p>Название мероприятия</p>
+            <img class="card" src="/img/ForExample/фото для теста.jpg" />
+          </div>
+          <div>
+            <p>Название мероприятия</p>
+            <img class="card" src="/img/ForExample/фото для теста большое.jpeg" />
+          </div>
+          <div>
+            <p>Название мероприятия</p>
+            <img class="card" src="/img/ForExample/фото для теста маленькое.jpg" />
+          </div>
+          <div>
+            <p>Название мероприятия</p>
+            <img class="card" src="/img/ForExample/еще для теста.jpg" />
+          </div>
+        </div>
+      </div>
+
+      <div class="rightSite">
+        <p style="text-align: center">Правая сторона</p>
+      </div>
+    </div>
+  </body>
+</html>

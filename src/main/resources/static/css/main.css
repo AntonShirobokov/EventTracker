@@ -1,0 +1,43 @@
+.container {
+	display: inline-flex;
+	margin-left: 25%;
+	margin-right: 25%;
+	width: 50%;
+}
+
+.companyandlogo {
+	height: 200px;
+	width: 400px;
+	border-color: black;
+}
+
+.search {
+	height: 200px;
+	width: 400px;
+	border-color: blueviolet;
+}
+
+.profile {
+	height: 200px;
+	width: 400px;
+	border: blueviolet;
+}
+
+.rounded-button {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: white;
+	color: black;
+	border-radius: 20px;
+	text-decoration: none;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+	/* Горизонтальное смещение, вертикальное смещение, размытие, цвет */
+	transition: box-shadow 0.3s ease;
+	/* Плавное изменение тени при наведении */
+	font-family: Comic Sans MS, Comic Sans, cursive
+}
+
+.rounded-button:hover {
+	box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+	/* Увеличенная тень при наведении */
+}

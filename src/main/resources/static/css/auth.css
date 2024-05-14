@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0; /* Фон страницы */
+  font-family: Trebuchet MS, sans-serif;
+}
+.login-container {
+  width: 300px;
+  padding: 20px;
+  background-color: #ffffff; /* Основной цвет белый */
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1); /* Тень */
+}
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: calc(100% - 21px);
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: Trebuchet MS, sans-serif;
+}
+.login-form input[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff; /* Цвет кнопки входа */
+  color: #fff;
+  cursor: pointer;
+  font-family: Trebuchet MS, sans-serif;
+}
+
+.newaccountbutton {
+  text-align: center;
+  width: 93.5%; /* Занимаем всю доступную ширину */
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff; /* Цвет кнопки входа */
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none; /* Убираем подчеркивание */
+  display: block; /* Делаем кнопку блочным элементом */
+}

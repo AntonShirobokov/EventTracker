@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Регистрация</title>
+<link rel="stylesheet" href="/css/auth.css" />
+</head>
+<body>
+
+	<div class="login-container">
+		<h2 style="text-align: center">Регистрация</h2>
+		<form class="login-form" th:action="@{/registration}" th:method="post"
+			th:object="${person}">
+
+			<input type="text" th:field="*{firstName}" placeholder="Имя" required /><br />
+			<div style="font-family: Trebuchet MS, sans-serif; color: red; margin-bottom: 10px" th:if="${#fields.hasErrors('firstName')}"
+				th:errors="*{firstName}">firstName errors</div>
+
+			<input type="text" th:field="*{lastName}" placeholder="Фамилия"
+				required /><br />
+			<div style="font-family: Trebuchet MS, sans-serif; color: red; margin-bottom: 10px" th:if="${#fields.hasErrors('lastName')}"
+				th:errors="*{lastName}">lastName errors</div>
+
+			<input type="text" th:field="*{fatherName}" placeholder="Отчество"
+				required /><br />
+			<div style="font-family: Trebuchet MS, sans-serif; color: red; margin-bottom: 10px" th:if="${#fields.hasErrors('fatherName')}"
+				th:errors="*{fatherName}">fatherName errors</div>
+
+			<input type="text" th:field="*{username}" placeholder="Логин"
+				required /><br />
+			<div style="font-family: Trebuchet MS, sans-serif; color: red; margin-bottom: 10px" th:if="${#fields.hasErrors('username')}"
+				th:errors="*{username}">Username errors</div>
+
+			<input type="password" th:field="*{password}" placeholder="Пароль"
+				required /><br />
+			<div style="font-family: Trebuchet MS, sans-serif; color: red; margin-bottom: 10px" th:if="${#fields.hasErrors('password')}"
+				th:errors="*{password}">Password errors</div>
+				
+			<input type="submit" value="Зарегестрироваться" />
+		</form>
+		<p style="font-family: Trebuchet MS, sans-serif">
+			Уже есть аккаунт? <a href="/login">Войти</a>
+		</p>
+	</div>
+
+
+	<!--<form th:action="@{/registration}" th:method="POST"
+		th:object="${person}">
+		<label for="firstName">Ваше имя</label> <input type="text"
+			th:field="*{firstName}" id="firstName" />
+		<div style="color: red" th:if="${#fields.hasErrors('firstName')}"
+			th:errors="*{firstName}">firstName errors</div>
+		<br /> <label for="lastName">Ваша фамилия</label> <input type="text"
+			th:field="*{lastName}" id="lastName" />
+		<div style="color: red" th:if="${#fields.hasErrors('lastName')}"
+			th:errors="*{lastName}">lastName errors</div>
+		<br /> <label for="fatherName">Ваше отчество</label> <input
+			type="text" th:field="*{fatherName}" id="fatherName" />
+		<div style="color: red" th:if="${#fields.hasErrors('fatherName')}"
+			th:errors="*{fatherName}">fatherName errors</div>
+		<br /> <label for="username">Придумайте логин (username)</label> <input
+			type="text" th:field="*{username}" id="username" />
+		<div style="color: red" th:if="${#fields.hasErrors('username')}"
+			th:errors="*{username}">Username errors</div>
+		<br /> <label for="password">Придумайте пароль</label> <input
+			type="password" th:field="*{password}" id="password" />
+		<div style="color: red" th:if="${#fields.hasErrors('password')}"
+			th:errors="*{password}">Password errors</div>
+		<br /> <input type="submit" value="Отправить" /> 
+	</form> -->
+</body>
+</html>

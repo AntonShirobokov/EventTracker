@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Профиль пользователя</title>
+</head>
+<body>
+	<p>Здесь будет информация о пользователе!</p>
+	<p th:text="${person.getFirstName()}">Имя</p>
+	<p th:text="${person.getLastName()}">Фамилия</p>
+	<p th:text="${person.getFatherName()}">Отчество</p>
+	<p th:text="${person.getUsername()}">Username</p>
+	<form th:method="post" th:action="@{profile/logout}">
+		<input type="submit" value="Выйти из аккаунта"/>
+	</form>
+</body>
+</html>
