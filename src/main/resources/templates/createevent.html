@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Создать событие</title>
+    <link rel="stylesheet" href="/css/eventcreate.css" />
+  </head>
+  <body>
+    <div class="eventcreate-container">
+      <h2 style="text-align: center">Создать мероприятие</h2>
+      <form class="login-form" action="#" method="post">
+        <input type="text" name="name" placeholder="Название мероприятия" />
+        <textarea name="description" placeholder="Описание"></textarea>
+        <input type="date" name="date" placeholder="Дата проведения" />
+        <input type="time" name="time" placeholder="Время проведения" />
+        <div class="input__wrapper">
+          <input
+            name="file"
+            type="file"
+            id="input__file"
+            class="input input__file"
+            multiple
+          />
+          <label for="input__file" class="input__file-button">
+            <span class="input__file-icon-wrapper"
+              ><img
+                class="input__file-icon"
+                src="/img/forAnyPage/arrow.png"
+                alt="Выбрать файл"
+                width="25"
+            /></span>
+            <span class="input__file-button-text">Загрузить фото</span>
+          </label>
+        </div>
+        <input type="submit" value="Создать" />
+      </form>
+
+      <div style="margin-top: 10px">
+        <a class="backpagebutton" href="/registration">На главную страницу</a>
+      </div>
+    </div>
+
+    <form class="login-form" action="#" method="post"></form>
+  </body>
+</html>

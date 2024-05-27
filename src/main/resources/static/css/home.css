@@ -58,10 +58,15 @@
   width: 25%;
 }
 
+.createEvent{
+flex-grow: 0;
+  width: 20%;
+}
+
 .search {
   flex-grow: 0;
   text-align: right;
-  width: 56%;
+  width: 36%;
 }
 
 .profileOrLogin {
