@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Card</title>
+    <link rel="stylesheet" href="/css/viewparticipants.css">
+</head>
+<body>
+    <div class="event-card">
+        <img class="event-photo" th:src="@{/image/{filename}(filename=${event.getPhotos().get(0).getFileName()})}" alt="Event 1 Photo">
+        <div class="event-details">
+            <h1 class="event-title" th:text="${event.getName()}">Название мероприятия</h1>
+            <p class="event-description" th:text="${event.getDescription()}">Описание мероприятия. Здесь вы можете указать все важные детали и информацию, которая может заинтересовать участников.</p>
+            <p class="event-date-time" th:text="'Дата: ' + ${event.getStartDate()} + ' Время: ' + ${event.getStartTime()}">Дата: 12 декабря 2024 г.<br>Время: 18:00</p>
+            <p class="event-location" th:text="${event.getAddress()}">Адрес: ул. Примерная, д. 123, г. Москва</p>
+            <a th:href="@{/participant/{personId}(personId=${event.getCreator().getPersonId()})}"><p class="event-creator" th:text="'Организатор: ' + ${event.getCreator().getLastName()} + ' ' + ${event.getCreator().getFirstName()} + ' ' + ${event.getCreator().getFatherName()}">Организатор: Иван Иванов</p></a>
+            <a href="/" class="back-button">Вернуться на главную страницу</a>
+        </div>
+    </div>
+
+    <div class="participants-section">
+        <h2>Список участников</h2>
+        <ul>
+            <a th:each="participant : ${event.getParticipants()}" th:href="@{/participant/{personId}(personId=${participant.getPersonId()})}">
+                <li class="participant-item" th:text="${participant.getLastName()} + ' ' + ${participant.getFirstName()}">Иван Иванов</li>
+            </a>
+        </ul>
+    </div>
+</body>
+</html>

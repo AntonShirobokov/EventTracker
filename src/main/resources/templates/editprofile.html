@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+	<a href="/profile" class="home-button">Назад в профиль</a>
+    <div class="profile-container">
+    	
+        <h1>Редактировать профиль</h1>
+        <div class="profile-details">
+        	<form th:method="post" th:action="@{/profile/edit}" th:object="${person}">
+        	<input name="personId" th:value="*{personId}" type="hidden"/>
+        	<div class="profile-item">
+                <label for="lastname">Фамилия:</label>
+                <input id="lastname" th:field="*{lastName}" required="required">Фамилия</input>
+            </div>
+            <div class="profile-item">
+                <label for="firstname">Имя:</label>
+                <input id="firstname" th:field="*{firstName}" required="required">Имя</input>
+            </div>
+            <div class="profile-item">
+                <label for="fathername">Отчество:</label>
+                <input id="fathername" th:field="*{fatherName}" required="required">Отчество</input>
+            </div>
+            <div class="profile-item">
+                <label for="phonenumber">Номер телефона:</label>
+                <input id="phonenumber" th:field="*{phoneNumber}">Номер телефона</input>
+            </div>
+            	<input type="submit" value="Сохранить"/>
+        	</form>
+
+            
+        </div>
+    </div>
+</body>
+</html>

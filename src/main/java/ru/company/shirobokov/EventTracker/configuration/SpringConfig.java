@@ -47,10 +47,16 @@ public class SpringConfig {
 				authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
 						.requestMatchers("/css/*.css").permitAll()
 						.requestMatchers("/img/ForExample/*.*").permitAll()
+						.requestMatchers("/image/*").permitAll()
 						.requestMatchers("/registration").anonymous()
 						.requestMatchers("/profile/*").hasAnyRole("USER", "ADMIN")
 						.requestMatchers("/admin").hasRole("ADMIN")
-						.requestMatchers("/", "/login", "registration", "/error").permitAll()
+						.requestMatchers("/event/*/delete").hasRole("ADMIN")
+						.requestMatchers("/participant/*/delete").hasRole("ADMIN")
+						.requestMatchers("/", "/login", "registration", "/error", "/pastevents").permitAll()
+						.requestMatchers("/search").permitAll()
+						
+						.requestMatchers("/event/*", "/login", "registration", "/error").permitAll()
 						.anyRequest().authenticated());
 		http.logout(logout->logout.logoutUrl("/profile/logout").logoutSuccessUrl("/login"));
 		return http.build();

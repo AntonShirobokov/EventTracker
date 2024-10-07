@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Card</title>
+    <link rel="stylesheet" href="/css/showevent.css">
+</head>
+<body>
+    <div class="event-card">
+        <img class="event-photo" th:src="@{/image/{filename}(filename=${event.getPhotos().get(0).getFileName()})}" alt="Event 1 Photo">
+        <div class="event-details">
+            <h1 class="event-title" th:text="${event.getName()}">Название мероприятия</h1>
+            <p class="event-description" th:text="${event.getDescription()}">Описание мероприятия. Здесь вы можете указать все важные детали и информацию, которая может заинтересовать участников.</p>
+            <p class="event-date-time" th:text="'Дата: ' + ${event.getStartDate()} + ' Время: ' + ${event.getStartTime()}">Дата: 12 декабря 2024 г.<br>Время: 18:00</p>
+            <p class="event-location" th:text="${event.getAddress()}">Адрес: ул. Примерная, д. 123, г. Москва</p>
+            <a th:href="@{/participant/{personId}(personId=${event.getCreator().getPersonId()})}"><p class="event-creator" th:text="'Организатор: ' + ${event.getCreator().getLastName()} + ' ' + ${event.getCreator().getFirstName()} + ' ' + ${event.getCreator().getFatherName()}">Организатор: Иван Иванов</p></a>
+            <a href="/" class="back-button">Вернуться на главную страницу</a>
+            <div class="auth-section" sec:authorize="isAuthenticated()">
+                <div th:if="${event.isNotParticipant()}">
+                    <form th:action="@{/event/{eventId}/joinevent(eventId=${event.getEventId()})}" th:method="post">
+                        <input type="submit" value="Я участвую" class="auth-button"/>
+                    </form>
+                </div>
+                
+                <div th:unless="${event.isNotParticipant()}">
+                    <form th:action="@{/event/{eventId}/viewparticipants(eventId=${event.getEventId()})}" th:method="get">
+                        <input type="submit" value="Посмотреть список участников мероприятия" class="auth-button"/>
+                    </form>
+                </div>
+                <form sec:authorize="hasRole('ROLE_ADMIN')" th:action="@{/event/{eventId}/delete(eventId=${event.getEventId()})}" th:method="delete">
+                        <input type="submit" value="Удалить событие" class="auth-button"/>
+                </form>
+            </div>
+            <div class="auth-section" sec:authorize="!isAuthenticated()">
+                <p><a href="/login" class="login-link">Войдите в аккаунт чтобы отметиться в мероприятии и посмотреть список учатников</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="comments-section">
+        <h2>Комментарии</h2>
+        <div th:if="${comments != null and comments.size() != 0}" class="comment">
+            <div th:each="comment : ${comments}">
+                <p class="comment-author" th:text="${comment.getPerson().getFirstName()} + ' ' + ${comment.getDateOfSending()} + ' ' + ${comment.getFormatedLocalTime()}">Анна Петрова</p>
+                <p class="comment-text" th:text="${comment.getMessage()}">Очень интересное мероприятие! Жду с нетерпением.</p>
+            </div>
+        </div>
+        
+        <div th:unless="${comments != null and comments.size() != 0}" class="comment">
+            <p class="comment-text">Никто не оставил комментарий, будьте первыми!</p>
+        </div>
+
+        <div class="add-comment">
+            <h3>Добавить комментарий</h3>
+            <form th:action="@{/event/{eventId}/addcomment(eventId=${event.getEventId()})}" th:method="POST">
+                <textarea style="margin-left:20px; margin-right:20px" id="commentText" name="message" placeholder="Ваш комментарий" required></textarea>
+                <button type="submit">Отправить</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

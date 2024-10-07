@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добро пожаловать</title>
-    <link rel="stylesheet" href="/css/home.css">
+    <title>Результаты поиска</title>
+    <link rel="stylesheet" href="/css/resultsearch.css">
     <link type="image/x-icon" href="/img/favicon/favicon-32x32.png" rel="shortcut icon">
     <link type="image/x-icon" href="/img/favicon/favicon-32x32.png" rel="icon">
 </head>
@@ -25,7 +25,7 @@
                 <div sec:authorize="!isAuthenticated()" class="createEvent"></div>
                 <div class="search">
                     <form action="/search" method="get">
-                        <input class="searchInput" type="search" name="searchrequest" placeholder="Поиск по всем событиям">
+                        <input class="searchInput" type="search" name="searchrequest" placeholder="Введите запрос">
                         <input class="buttonSearch" type="submit" value="Search">
                     </form>
                 </div>
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div>
-                <h2 class="upcomingEventsTitle">Предстоящие события</h2>
+                <h2 class="upcomingEventsTitle" th:text="'Результаты поиска по запросу: ' + ${searchrequest}"></h2>
             </div>
             <div th:if="${events != null and events.size() != 0}" class="grid">
                 <div th:each="event : ${events}" class="grid-item">
@@ -48,11 +48,8 @@
                 </div>
             </div>
             <div th:unless="${events != null and events.size() != 0}" class="no-events">
-                <h3>В настоящий момент нет опубликованных событий</h3>
+                <h3>Ничего не найдено</h3>
             </div>
-            <div class="showAllEventsAfterGrid">
-    			<p><a class="buttonShowAllEvents" href="/pastevents">Показать прошедшие события события</a></p>
-			</div>
         </div>
         <div class="rightSite"></div>
     </div>

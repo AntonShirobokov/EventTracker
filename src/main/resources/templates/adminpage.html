@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Администрация</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель администратора</title>
+    <link rel="stylesheet" href="/css/adminpage.css">
 </head>
 <body>
-	<p>Страница предназвачена для администраторов сайта</p>
+    <div class="container">
+        <h1>События на проверку</h1>
+        <div th:if="${events.size()!=0 && events!=null}" th:each="event : ${events}" class="card">
+            <div class="img-container">
+            <img th:src="@{/image/{filename}(filename=${event.getPhotos().get(0).getFileName()})}" alt="Event 1 Photo">
+            </div>
+            <h2 th:text="${event.getName()}">Event Title 1</h2>
+            <p th:text="${event.getDescription()}">Description of the event goes here. It provides details about the event.</p>
+            <p><strong>Дата проведения:</strong> <span th:text="${event.getStartDate()}"></span></p>
+            <p><strong>Время начала:</strong> <span th:text="${event.getStartTime()}"></span></p>
+            <p><strong>Адрес:</strong> <span th:text="${event.getAddress()}"></span></p>
+            <div class="buttons">
+                <form action="/admin/accept" method="POST" class="action-form">
+                    <input type="hidden" name="eventId" th:value="${event.getEventId()}">
+                    <button type="submit" class="accept">Принять</button>
+                </form>
+                <form action="/admin/reject" method="POST" class="action-form">
+                    <input type="hidden" name="eventId" th:value="${event.getEventId()}">
+                    <button type="submit" class="reject">Отклонить</button>
+                </form>
+            </div>
+        </div>
+        <div th:unless="${events.size()!=0 && events!=null}">
+        <h2>Событий на проверку сейчас нет</h2>
+        </div>
+        <a href="/">Вернуться на главную страницу</a>
+    </div>
 </body>
 </html>

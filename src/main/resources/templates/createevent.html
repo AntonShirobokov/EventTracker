@@ -8,11 +8,19 @@
   <body>
     <div class="eventcreate-container">
       <h2 style="text-align: center">Создать мероприятие</h2>
-      <form class="login-form" action="#" method="post">
-        <input type="text" name="name" placeholder="Название мероприятия" />
-        <textarea name="description" placeholder="Описание"></textarea>
-        <input type="date" name="date" placeholder="Дата проведения" />
-        <input type="time" name="time" placeholder="Время проведения" />
+      
+      <form class="login-form" enctype="multipart/form-data" th:action="@{/createevent}" th:method="post">
+      
+        <input type="text" th:field="*{event.name}" placeholder="Название мероприятия" required="required"/>
+        
+        <textarea th:field="*{event.description}" placeholder="Описание" required="required"></textarea>
+        
+        <input type="date" th:field="*{event.startDate}" placeholder="Дата проведения" required="required"/>
+        
+        <input type="time" th:field="*{event.startTime}" placeholder="Время проведения" required="required"/>
+        
+        <input type="text" th:field="*{event.address}" placeholder="Адрес" required="required"/>
+        
         <div class="input__wrapper">
           <input
             name="file"
@@ -20,6 +28,7 @@
             id="input__file"
             class="input input__file"
             multiple
+            required="required"
           />
           <label for="input__file" class="input__file-button">
             <span class="input__file-icon-wrapper"
@@ -36,10 +45,9 @@
       </form>
 
       <div style="margin-top: 10px">
-        <a class="backpagebutton" href="/registration">На главную страницу</a>
+        <a class="backpagebutton" href="/">На главную страницу</a>
       </div>
     </div>
 
-    <form class="login-form" action="#" method="post"></form>
   </body>
 </html>

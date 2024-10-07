@@ -160,17 +160,3 @@ body {
     color: #666;
     padding: 20px;
 }
-
-.buttonShowAllEvents {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    margin-left: 20px;
-}
-
-.buttonShowAllEvents:hover {
-    background-color: #0056b3;
-}
-

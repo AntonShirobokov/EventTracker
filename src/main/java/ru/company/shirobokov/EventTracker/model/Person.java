@@ -1,48 +1,60 @@
 package ru.company.shirobokov.EventTracker.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "person")
 public class Person {
 	@Id
-	@Column(name = "id")
+	@Column(name = "person_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int personId;
 
-	@Size(min=2, max=100, message="Имя должно быть от 2 до 100 символов")
+	@Size(min = 2, max = 100, message = "Имя должно быть от 2 до 100 символов")
 	@Column(name = "first_name")
 	private String firstName;
 
-	@Size(min=2, max=100, message="Фималия должна быть от 2 до 100 символов")
+	@Size(min = 2, max = 100, message = "Фималия должна быть от 2 до 100 символов")
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Size(min=2, max=100, message="Отчество должно быть от 2 до 100 символов")
+	@Size(min = 2, max = 100, message = "Отчество должно быть от 2 до 100 символов")
 	@Column(name = "father_name")
 	private String fatherName;
 
 	@Column(name = "phone_number")
 	private String phoneNumber;
 
-	@Size(min=2, max=100, message="Логин должен быть от 2 до 100 символов")
+	@Size(min = 2, max = 100, message = "Логин должен быть от 2 до 100 символов")
 	@Column(name = "username")
 	private String username;
 
-	@Size(min=2, max=100, message="Пароль должнен быть от 2 до 100 символов")
+	@Size(min = 2, max = 100, message = "Пароль должнен быть от 2 до 100 символов")
 	@Column(name = "password")
 	private String password;
-	
-	@Column(name= "role")
+
+	@Column(name = "role")
 	private String role;
 
+	@OneToMany(mappedBy = "creator")
+	private List<Event> events;
+
+	@OneToMany(mappedBy = "person")
+	private List<Comment> comments;
+	
+	@ManyToMany(mappedBy = "participants")
+	private List<Event> goToEvents;
+	
 	public Person() {
 	}
 
@@ -57,12 +69,12 @@ public class Person {
 		this.password = password;
 	}
 
-	public int getId() {
-		return id;
+	public int getPersonId() {
+		return personId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setPersonId(int personId) {
+		this.personId = personId;
 	}
 
 	public String getFirstName() {
@@ -121,10 +133,35 @@ public class Person {
 		this.role = role;
 	}
 
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+
+	public List<Event> getGoToEvents() {
+		return goToEvents;
+	}
+
+	public void setGoToEvents(List<Event> goToEvents) {
+		this.goToEvents = goToEvents;
+	}
+
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", fatherName=" + fatherName
-				+ ", phoneNumber=" + phoneNumber + ", username=" + username + ", password=" + password + "]";
+		return "Person [id=" + personId + ", firstName=" + firstName + ", lastName=" + lastName + ", fatherName="
+				+ fatherName + ", phoneNumber=" + phoneNumber + ", username=" + username + ", password=" + password
+				+ "]";
 	}
 
 }

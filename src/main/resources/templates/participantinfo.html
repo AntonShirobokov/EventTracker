@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Профиль</title>
-    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="stylesheet" href="/css/participantinfo.css">
 </head>
 <body>
-	<a href="/" class="home-button">На главную</a>
     <div class="profile-container">
-    	
-        <h1>Ваш профиль</h1>
+        <h1>Профиль участника</h1>
         <div class="profile-details">
             <div class="profile-item">
                 <label>ФИО:</label>
@@ -24,16 +22,11 @@
                 <label>Роль на сайте</label>
                 <span th:text="${person.getRole()}">+7 (999) 123-45-67</span>
             </div>
-            
-            <div class="profile-item">
-                <label>Ваш логин</label>
-                <span th:text="${person.getUsername()}">+7 (999) 123-45-67</span>
+            <div sec:authorize="hasRole('ROLE_ADMIN')" th:if="${person.getRole() != 'ROLE_ADMIN'}">
+            	<form th:action="@{/participant/{personId}/delete(personId=${person.getPersonId()})}" th:method="delete">
+            		<input class="logout-button" type="submit" value="Заблокировать пользователя"/>
+            	</form>
             </div>
-            <a href="/profile/logout" class="logout-button">Выйти из аккаунта</a>
-            
-            <a href="/profile/edit" class="logout-button">Редактировать профиль</a>
-            
-            <a sec:authorize="hasRole('ROLE_ADMIN')" href="/admin" class="logout-button">Перейти на старницу проверки событий</a>
         </div>
     </div>
 </body>
